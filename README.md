@@ -1,6 +1,6 @@
 # go-view
 
-It is a manager of the HTML view template engine. You can register more than one template engine, and get it by the extension of the template filename to render HTML.
+It is a manager of the HTML view template engine. You can register more than one template engine, and get it by the extension of the template filename to render HTML. Support Go `1.9+`.
 
 ## Install
 
