@@ -17,8 +17,8 @@ limitations under the License.
 package django
 
 import (
+	"github.com/flosch/pongo2"
 	view "github.com/xgfone/go-view"
-	"github.com/xgfone/pongo2"
 )
 
 // Type Aliases from pongo2.
