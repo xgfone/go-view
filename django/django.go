@@ -17,8 +17,8 @@ limitations under the License.
 package django
 
 import (
-	"github.com/flosch/pongo2"
 	view "github.com/xgfone/go-view"
+	"github.com/xgfone/pongo2"
 )
 
 // Type Aliases from pongo2.
@@ -106,4 +106,10 @@ func (e Engine) Execute(data interface{}, filename string, filenames ...string) 
 		return nil, err
 	}
 	return tpl.ExecuteBytes(data.(map[string]interface{}))
+}
+
+// Load reloads all the django templates.
+func (e Engine) Load() error {
+	e.CleanCache()
+	return nil
 }

@@ -31,6 +31,9 @@ var ErrNoViewEngine = errors.New("not found view engine")
 
 // Engine is the interface which all view engines should be implemented.
 type Engine interface {
+	// Load (re)loads all the templates.
+	Load() error
+
 	// Execute executes and renders a template by its filename.
 	Execute(data interface{}, filename string, filenames ...string) ([]byte, error)
 
@@ -66,4 +69,14 @@ func (v View) Execute(data interface{}, filename string, filenames ...string) ([
 		return engine.Execute(data, filename, filenames...)
 	}
 	return nil, ErrNoViewEngine
+}
+
+// Load (re)loads all the templates.
+func (v View) Load() error {
+	for ext, engine := range v {
+		if err := engine.Load(); err != nil {
+			return fmt.Errorf("the %s template engine failed to load: %s", ext, err)
+		}
+	}
+	return nil
 }
